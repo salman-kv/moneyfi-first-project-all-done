@@ -6,11 +6,10 @@ class TargetWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextTheme _textTheme = Theme.of(context).textTheme;
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-          return const AddTarget();
+        Navigator.of(context).push(MaterialPageRoute(builder: (ctx){
+          return const AddTarget(); 
         }));
       },
       child: Padding(
@@ -26,7 +25,7 @@ class TargetWidget extends StatelessWidget {
                 blurStyle: BlurStyle.normal,
               )
             ],
-            borderRadius: BorderRadius.all(Radius.circular(100)),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
           padding: const EdgeInsets.all(8),
           child: ValueListenableBuilder(
@@ -38,14 +37,12 @@ class TargetWidget extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(10),
-                    child: Expanded(
-                      child: Text(
-                        value.target,
-                        style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
+                    child: Text(
+                      value.target,
+                      style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
                     ),
                   ),
                   value.target == 'Add Target'
@@ -70,56 +67,6 @@ class TargetWidget extends StatelessWidget {
                             ),
                           ],
                         ),
-
-                  //  value.target=='Add Target' ? Text('') :   Column(
-                  //       // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //       crossAxisAlignment: CrossAxisAlignment.end,
-                  //       children: [
-                  //         Row(
-                  //           children: [
-                  //             const Text(
-                  //               'Start In : ',
-                  //               style: TextStyle(
-                  //                   color: Color.fromARGB(255, 166, 169, 175),
-                  //                   fontWeight: FontWeight.bold,
-                  //                   fontSize: 16),
-                  //             ),
-                  //             const SizedBox(
-                  //               width: 5,
-                  //             ),
-                  //             Text(
-                  //               ' ${value.startTime.day} - ${value.startTime.month} - ${value.startTime.year}',
-                  //               style: const TextStyle(
-                  //                   fontSize: 16,
-                  //                   color: Color.fromARGB(255, 166, 169, 175),
-                  //                   fontWeight: FontWeight.bold),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //         // const Text(' To ',style: TextStyle(
-                  //         //   color: Color.fromARGB(255, 11, 11, 11)
-                  //         // ),),
-
-                  //         Row(
-                  //           children: [
-                  //              Text(
-                  //               'Achieve On  :  ',
-                  //               style:TextStyle(
-                  //                   color: incomeColor,
-                  //                   fontWeight: FontWeight.bold,
-                  //                   fontSize: 16),
-                  //             ),
-                  //             Text(
-                  //               '${value.endTime.day} - ${value.endTime.month} - ${value.endTime.year}',
-                  //               style:  TextStyle(
-                  //                   fontSize: 16,
-                  //                   color: incomeColor,
-                  //                   fontWeight: FontWeight.bold),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //       ],
-                  //     ),
                 ],
               );
             },
