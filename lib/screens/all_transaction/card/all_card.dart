@@ -163,7 +163,7 @@ class AllCard extends StatelessWidget {
                                   color: expenseColor,
                                   size: 17,
                                 )
-                              : const SizedBox()
+                              : const SizedBox(width: 17,)
                     ],
                   ),
                 ),

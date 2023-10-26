@@ -32,60 +32,68 @@ class _GraphScreenState extends State<GraphScreen> {
           body: ValueListenableBuilder(
             valueListenable: TransactionDb().allTransactionListener,
             builder: (context, value, child) {
-              return TransactionDb().allTransactionListener.value.isNotEmpty ?  SfCircularChart(
-                tooltipBehavior: TooltipBehavior(enable: true),
-                title: ChartTitle(
-                  text: 'Statistics',
-                  textStyle: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 21,
-                      fontWeight: FontWeight.bold),
-                ),
-                series: <CircularSeries>[
-                  PieSeries<GraphModel, String>(
-                    pointColorMapper: (datum, index) {
-                      return index==0 ? incomeColor : index==1 ? expenseColor : const Color.fromARGB(255, 26, 68, 103);
-                    },
-                    dataSource: getGraphIEOnly(),
-                    xValueMapper: (GraphModel datum, index) {
-                      return datum.name;
-                    },
-                    yValueMapper: (GraphModel data, index) {
-                      return data.sum;
-                    },
-                    dataLabelSettings: const DataLabelSettings(
-                      isVisible: true,
-                      borderColor: Color.fromARGB(255, 2, 42, 42),
-                      textStyle: TextStyle(
-                          color: Color.fromARGB(255, 249, 249, 249),
-                          fontSize: 15),
-                    ),
-                  ),
-                ],
-                legend: const Legend(
-                    textStyle:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
-                    iconHeight: 15,
-                    iconWidth: 15,
-                    isVisible: true,
-                    position: LegendPosition.left,
-                    alignment: ChartAlignment.center),
-              ) :  SizedBox(
-                height: double.infinity,
-                width: double.infinity,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/images/pie no data.png'),
-                    const Text('no data',style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold
-                    ),),
-                  ],
-                ),
-              );
+              return TransactionDb().allTransactionListener.value.isNotEmpty
+                  ? SfCircularChart(
+                      tooltipBehavior: TooltipBehavior(enable: true),
+                      title: ChartTitle(
+                        text: 'Statistics',
+                        textStyle: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 21,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      series: <CircularSeries>[
+                        PieSeries<GraphModel, String>(
+                          pointColorMapper: (datum, index) {
+                            return index == 0
+                                ? incomeColor
+                                : index == 1
+                                    ? expenseColor
+                                    : const Color.fromARGB(255, 26, 68, 103);
+                          },
+                          dataSource: getGraphIEOnly(),
+                          xValueMapper: (GraphModel datum, index) {
+                            return datum.name;
+                          },
+                          yValueMapper: (GraphModel data, index) {
+                            return data.sum;
+                          },
+                          dataLabelSettings: const DataLabelSettings(
+                            isVisible: true,
+                            borderColor: Color.fromARGB(255, 2, 42, 42),
+                            textStyle: TextStyle(
+                                color: Color.fromARGB(255, 249, 249, 249),
+                                fontSize: 15),
+                          ),
+                        ),
+                      ],
+                      legend: const Legend(
+                          textStyle: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 19),
+                          iconHeight: 15,
+                          iconWidth: 15,
+                          isVisible: true,
+                          position: LegendPosition.left,
+                          alignment: ChartAlignment.center),
+                    )
+                  : SizedBox(
+                      height: double.infinity,
+                      width: double.infinity,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/images/pie no data.png'),
+                          const Text(
+                            'no data',
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    );
             },
           ),
           floatingActionButton: FloatingActionButton(
@@ -101,46 +109,51 @@ class _GraphScreenState extends State<GraphScreen> {
           body: ValueListenableBuilder(
             valueListenable: TransactionDb().allTransactionListener,
             builder: (context, value, child) {
-              return  TransactionDb().allTransactionListener.value.isNotEmpty ? SfCircularChart(
-                tooltipBehavior: TooltipBehavior(enable: true),
-                title: ChartTitle(
-                  text: 'Statistics On Catogory Base',
-                  textStyle: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 21,
-                      fontWeight: FontWeight.bold),
-                ),
-                series: <CircularSeries>[
-                  PieSeries<GraphModel, String>(
-                    dataSource: getGraph(),
-                    xValueMapper: (GraphModel datum, index) {
-                      return datum.name;
-                    },
-                    yValueMapper: (GraphModel data, index) {
-                      return data.sum;
-                    },
-                    dataLabelSettings: const DataLabelSettings(
-                      isVisible: true,
-                      borderColor: Color.fromARGB(255, 2, 42, 42),
-                      textStyle: TextStyle(
-                          color: Color.fromARGB(255, 16, 16, 16),
-                          fontSize: 15),
-                    ),
-                  ),
-                ],
-                legend: const Legend(
-                    textStyle:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
-                    iconHeight: 15,
-                    iconWidth: 15,
-                    isVisible: true,
-                    position: LegendPosition.left,
-                    alignment: ChartAlignment.center),
-              ) : const Center(child: Text('no data',style: TextStyle(
-                color: Colors.red,
-                fontSize: 18,
-                fontWeight: FontWeight.bold
-              ),));
+              return TransactionDb().allTransactionListener.value.isNotEmpty
+                  ? SfCircularChart(
+                      tooltipBehavior: TooltipBehavior(enable: true),
+                      title: ChartTitle(
+                        text: 'Statistics On Catogory Base',
+                        textStyle: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 21,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      series: <CircularSeries>[
+                        PieSeries<GraphModel, String>(
+                          dataSource: getGraph(),
+                          xValueMapper: (GraphModel datum, index) {
+                            return datum.name;
+                          },
+                          yValueMapper: (GraphModel data, index) {
+                            return data.sum;
+                          },
+                          dataLabelSettings: const DataLabelSettings(
+                            isVisible: true,
+                            borderColor: Color.fromARGB(255, 2, 42, 42),
+                            textStyle: TextStyle(
+                                color: Color.fromARGB(255, 16, 16, 16),
+                                fontSize: 15),
+                          ),
+                        ),
+                      ],
+                      legend: const Legend(
+                          textStyle: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 19),
+                          iconHeight: 15,
+                          iconWidth: 15,
+                          isVisible: true,
+                          position: LegendPosition.left,
+                          alignment: ChartAlignment.center),
+                    )
+                  : const Center(
+                      child: Text(
+                      'no data',
+                      style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ));
             },
           ),
           floatingActionButton: FloatingActionButton(
@@ -205,48 +218,70 @@ class _DateState extends State<DateSort> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                TextButton.icon(
-                  onPressed: () async {
-                    startDate = (await showDatePicker(
-                        context: context,
-                        initialDate: TransactionDb().startDateFilter!,
-                        firstDate: TransactionDb().startDateFilter!,
-                        lastDate:
-                            endDate == null ? DateTime.now() : endDate!))!;
-                    setState(() {});
-                  },
-                  icon: const Icon(Icons.calendar_month_outlined),
-                  label: startDate == null
-                      ? const Text('select')
-                      : Text(
-                          '${startDate?.day} - ${startDate?.month} - ${startDate?.year}',
-                          style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
-                        ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 226, 226, 226),
+                      borderRadius: BorderRadius.circular(50)),
+                  padding: const EdgeInsets.all(5),
+                  child: TextButton.icon(
+                    onPressed: () async {
+                      startDate = (await showDatePicker(
+                          context: context,
+                          initialDate: TransactionDb().startDateFilter!,
+                          firstDate: TransactionDb().startDateFilter!,
+                          lastDate:
+                              endDate == null ? DateTime.now() : endDate!))!;
+                      setState(() {});
+                    },
+                    icon: const Icon(Icons.calendar_month_outlined),
+                    label: startDate == null
+                        ? const Text('select')
+                        : Text(
+                            '${startDate?.day} - ${startDate?.month} - ${startDate?.year}',
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ),
+                  ),
                 ),
               ],
             ),
-            TextButton.icon(
-              onPressed: () async {
-                endDate = (await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: startDate!,
-                    lastDate: DateTime.now()))!;
-                setState(() {});
-              },
-              icon: const Icon(Icons.calendar_month_outlined),
-              label: endDate == null
-                  ? const Text('select')
-                  : Text(
-                      '${endDate?.day} - ${endDate?.month} - ${endDate?.year}',
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    ),
+            const SizedBox(
+              width: 15,
+            ),
+            const Text(
+              'End Date',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 226, 226, 226),
+                  borderRadius: BorderRadius.circular(50)),
+              padding: const EdgeInsets.all(5),
+              child: TextButton.icon(
+                onPressed: () async {
+                  endDate = (await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: startDate!,
+                      lastDate: DateTime.now()))!;
+                  setState(() {});
+                },
+                icon: const Icon(Icons.calendar_month_outlined),
+                label: endDate == null
+                    ? const Text('select')
+                    : Text(
+                        '${endDate?.day} - ${endDate?.month} - ${endDate?.year}',
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold),
+                      ),
+              ),
             ),
           ],
         ),
